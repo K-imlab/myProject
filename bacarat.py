@@ -91,18 +91,21 @@ class Game:
 
 
 class Researcher:
-    def __init__(self, table_pos):
+    def __init__(self, table_pos, round_n):
         self.table_pos = table_pos
         self.table_width = table_pos[2] - table_pos[0]
         self.table_height = table_pos[3] - table_pos[1]
         self.table_box = (table_pos[0], table_pos[1], self.table_width, self.table_height)
+        self.round_n_box = (table_pos[0], table_pos[1], round_n[0]-table_pos[0], round_n[1]-table_pos[1])
 
     def get_table_img(self):
         img = get_image_from_box(self.table_box)
         cv2.imwrite(f"./game_result/{time.time()}.png", img)
+        print("save image")
 
     def is_table_done(self):
-
+        img = get_image_from_box(self.round_n_box)
+        pass
 
 
 if __name__ == "__main__":
@@ -111,11 +114,12 @@ if __name__ == "__main__":
     me = BaccaratMaster()
 
     stat = Researcher(table_pos=(1035, 380, 1410, 624))
-
-    for i in range(100):
-        stat.get_table_img()
-
-        time.sleep(1)
+    ag.mouseInfo()
+    1062, 399
+    # for i in range(100):
+    #     stat.get_table_img()
+    #
+    #     time.sleep(1)
 
 
 
