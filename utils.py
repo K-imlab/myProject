@@ -39,17 +39,18 @@ def get_image_from_box(box):
     return img
 
 
-shell = win32com.client.Dispatch("WScript.Shell")
+
 
 
 def set_foreground(hwnd):
+    shell = win32com.client.Dispatch("WScript.Shell")
     shell.SendKeys('%')
     win32gui.SetForegroundWindow(hwnd)
 
 
 def game_state(pre_img):
     for win in get_win_list():
-        if 'Phaser' in win[0]:
+        if 'Betwiz' in win[0]:
             window_name = win[0]
             window_handle = win[1]
             break
@@ -98,30 +99,30 @@ def get_my_money():
     return
 
 
-pre_img = None
-pre_state = None
-while True:
-    is_end = False
-    pre_img = state = game_state(pre_img)
-    money = get_my_money()
-    print(f"{state}", end="")
-
-    if state == 0:
-        bets = ["odd"]
-        purchase(bets)
-        print(f"\t {bets} 구매 완료")
-        on_the_table = 1000
-    elif state == 1:
-        print("추첨 대기 중", end="")
-    elif state == 2:
-        print("추첨 중", end="")
-    elif state == 3:
-        change_summation_game()
-        print("now we are in selection game")
-        if pre_state == 2:
-            print("win ", ag.locateOnScreen("./capture/win.png", confidence=0.9))
-            print("lost ", ag.locateOnScreen("./capture/lost.png", confidence=0.9))
-    elif state == 4:
-        pass
-
-    time.sleep(20)
+# pre_img = None
+# pre_state = None
+# while True:
+#     is_end = False
+#     pre_img = state = game_state(pre_img)
+#     money = get_my_money()
+#     print(f"{state}", end="")
+#
+#     if state == 0:
+#         bets = ["odd"]
+#         purchase(bets)
+#         print(f"\t {bets} 구매 완료")
+#         on_the_table = 1000
+#     elif state == 1:
+#         print("추첨 대기 중", end="")
+#     elif state == 2:
+#         print("추첨 중", end="")
+#     elif state == 3:
+#         change_summation_game()
+#         print("now we are in selection game")
+#         if pre_state == 2:
+#             print("win ", ag.locateOnScreen("./capture/win.png", confidence=0.9))
+#             print("lost ", ag.locateOnScreen("./capture/lost.png", confidence=0.9))
+#     elif state == 4:
+#         pass
+#
+#     time.sleep(20)
